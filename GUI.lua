@@ -1,80 +1,100 @@
 -- Tables
 SettingsTable = {
-	NightMode = false,
+	ModeNuit = false,
 
 }
 
--- Variable
-bgColor = Color3.fromRGB(168, 0, 3)
-bdColor = Color3.fromRGB(139, 0, 5)
+--Variables : 
+fondEcranCouleur = Color3.fromRGB(106, 31, 171)
+bordCouleur = Color3.fromRGB(80, 23, 129)
 
---Instances
-Menu = Instance.new("ScreenGui", game.Players.LocalPlayer.PlayerGui)
+--Instances : 
+Fichier = Instance.new("Folder", game.Players.LocalPlayer.PlayerGui)
 
-MainFrame = Instance.new("Frame", Menu)
+MenuPrincipale = Instance.new("ScreenGui", Fichier)
 
-Text = Instance.new("TextLabel", MainFrame)
+FramePrincipale = Instance.new("Frame", MenuPrincipale)
 
-NightModeButton = Instance.new("TextButton", MainFrame)
-NightModeButtonTitle = Instance.new("TextLabel", NightModeButton)
+TextMenuPrincipale = Instance.new("TextLabel", FramePrincipale)
 
---Paramètres
-MainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
-MainFrame.Size = UDim2.new(0, 375, 0, 160)
-MainFrame.Position = UDim2.new(0.5, 0, 0.1, 0)
-MainFrame.BackgroundColor3 = bgColor
-MainFrame.BorderColor3 = bdColor
-MainFrame.BorderSizePixel = 1.5
-MainFrame.Active = true
-MainFrame.Draggable = true
+FrameCheat = Instance.new("Frame", FramePrincipale)
 
-Text.AnchorPoint = Vector2.new(0.5, 0)
-Text.Size = UDim2.new(0, 200, 0, 50)
-Text.Position = UDim2.new(0.5, 0, 0, 0)
-Text.BackgroundColor3 = bgColor
-Text.BorderColor3 = bgColor
-Text.Text = "Menu"
-Text.TextSize = 35
-Text.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextListeCheat = Instance.new("TextLabel", FrameCheat)
 
-NightModeButton.AnchorPoint = Vector2.new(0.5, 1)
-NightModeButton.Position = UDim2.new(0.1, 0, 0.9, 0)
-NightModeButton.Size = UDim2.new(0, 50, 0, 50)
-NightModeButton.BackgroundColor3 = bgColor
-NightModeButton.BorderSizePixel = 1.5
-NightModeButton.BorderColor3 = bdColor
-NightModeButton.TextColor3 = bdColor
-NightModeButton.Text = ""
-NightModeButton.TextScaled = true
-NightModeButton.MouseButton1Click:Connect(function()
-	SettingsTable.NightMode = not SettingsTable.NightMode
+BouttonJourNuit = Instance.new("TextButton", FrameCheat)
 
-	if SettingsTable.NightMode then
-		NightModeButton.Text = "✔"
+TextBoutonJourNuit = Instance.new("TextLabel", BouttonJourNuit)
+
+--Propriétés : 
+FramePrincipale.AnchorPoint = Vector2.new(0.5, 0.5)
+FramePrincipale.Position = UDim2.new(0.5, 0, 0.14, 0)
+FramePrincipale.Size = UDim2.new(0, 256, 0, 40)
+FramePrincipale.BackgroundColor3 = fondEcranCouleur
+FramePrincipale.BorderSizePixel = 2
+FramePrincipale.BorderColor3 = bordCouleur
+FramePrincipale.Active = true
+FramePrincipale.Draggable = true
+
+TextMenuPrincipale.AnchorPoint = Vector2.new(0.5, 0.5)
+TextMenuPrincipale.Position = UDim2.new(0.5, 0, 0.4, 0)
+TextMenuPrincipale.Size = UDim2.new(1, 0, 0.3, 0)
+TextMenuPrincipale.Text = "Menu Principale"
+TextMenuPrincipale.TextSize = 18
+TextMenuPrincipale.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextMenuPrincipale.BackgroundColor3 = fondEcranCouleur
+TextMenuPrincipale.BorderSizePixel = 0
+
+FrameCheat.AnchorPoint = Vector2.new(0.5, 0)
+FrameCheat.Position = UDim2.new(0.5, 0, 1, 0)
+FrameCheat.Size = UDim2.new(0, 256, 0, 150)
+FrameCheat.BackgroundColor3 = fondEcranCouleur
+FrameCheat.BorderSizePixel = 2
+FrameCheat.BorderColor3 = bordCouleur
+
+TextListeCheat.AnchorPoint = Vector2.new(0.5, 0)
+TextListeCheat.Position = UDim2.new(0.5, 0, 0.1, 0)
+TextListeCheat.Text = "Liste cheat :"
+TextListeCheat.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextListeCheat.TextSize = 16
+
+BouttonJourNuit.AnchorPoint = Vector2.new(0.5, 0)
+BouttonJourNuit.Position = UDim2.new(0.3, 0, 0.3, 0)
+BouttonJourNuit.Size = UDim2.new(0, 25, 0, 25)
+BouttonJourNuit.BackgroundColor3 = fondEcranCouleur
+BouttonJourNuit.BorderSizePixel = 1
+BouttonJourNuit.BorderColor3 = bordCouleur
+BouttonJourNuit.TextColor3 = bordCouleur
+BouttonJourNuit.Text = ""
+BouttonJourNuit.TextScaled = true
+BouttonJourNuit.MouseButton1Click:Connect(function()
+	SettingsTable.ModeNuit = not SettingsTable.ModeNuit
+
+	if SettingsTable.ModeNuit then
+		BouttonJourNuit.Text = "✔"
 	else
-		NightModeButton.Text = ""
+		BouttonJourNuit.Text = ""
 	end
 
-	NightMode()
+	ModeNuit()
 
 end)
 
-NightModeButtonTitle.Position = UDim2.new(1, 0, 0, 0)
-NightModeButtonTitle.Size = UDim2.new(0, 300, 1, 0)
-NightModeButtonTitle.BackgroundTransparency = 1
-NightModeButtonTitle.TextScaled = true
-NightModeButtonTitle.Text = "Night Mode"
-NightModeButtonTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextBoutonJourNuit.Position = UDim2.new(1, 0, 0, 0)
+TextBoutonJourNuit.Size = UDim2.new(0, 125, 1, 0)
+TextBoutonJourNuit.BackgroundTransparency = 1
+TextBoutonJourNuit.TextScaled = true
+TextBoutonJourNuit.Text = "Mode nuit"
+TextBoutonJourNuit.TextColor3 = Color3.fromRGB(255, 255, 255)
 
---Fonction
+-- Fonctions :
 game:GetService("UserInputService").InputBegan:Connect(function(input)
 	if input.KeyCode == Enum.KeyCode.Equals then
-		Menu.Enabled = not Menu.Enabled
+		MenuPrincipale.Enabled = not MenuPrincipale.Enabled
 	end
 end)
 
-function NightMode()
-	if SettingsTable.NightMode then
+function ModeNuit()
+	if SettingsTable.ModeNuit then
 		game.Lighting.ClockTime = 0
 	else
 		game.Lighting.ClockTime = 14
